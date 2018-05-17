@@ -39,6 +39,28 @@ public class Array {
         data[index] = item;
     }
 
+    public void insert(int index, int item) {
+        if (size == data.length) {
+            throw new IllegalArgumentException("addLast failed, array is full");
+        }
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("insert failed,  insert position is out of range");
+        }
+        for (int i = size - 1; i >= index; i--) {
+            data[i + 1] = data[i];
+        }
+        data[index] = item;
+        size++;
+    }
+
+    public void addLast(int item) {
+        insert(size, item);
+    }
+
+    public void addFirst(int item) {
+        insert(0, item);
+    }
+
     @Override
     public String toString() {
         if (size != 0) {

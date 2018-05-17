@@ -41,7 +41,7 @@ public class Array<E> {
 
     public void insert(int index, E item) {
         if (size == data.length) {
-            throw new IllegalArgumentException("addLast failed, array is full");
+            resize(2 * size);
         }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("insert failed,  insert position is out of range");
@@ -76,9 +76,14 @@ public class Array<E> {
     }
 
     public E remove(int index) {
+        if(size <= data.length/2) {
+            resize(data.length/2);
+        }
+
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("remove failed,  index is out of range");
         }
+
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i + 1];
         }
@@ -111,6 +116,15 @@ public class Array<E> {
             isRemoveAll = true;
         }
         return isRemoveAll;
+    }
+
+    // 动态扩充数组长度
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     @Override

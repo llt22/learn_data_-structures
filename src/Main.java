@@ -2,14 +2,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Array<People> arr = new Array(10);
-
-
-        People Jack = new People("Jack");
-
-        arr.addLast(Jack);
-        arr.addLast(Jack);
-        arr.removeAllElements(Jack);
+        Array<Integer> arr = new Array(4);
+        for (int i = 0; i < 10; i++) {
+            arr.addFirst(i);
+        }
 
         System.out.println(arr);
     }

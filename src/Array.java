@@ -25,6 +25,7 @@ public class Array<E> {
         return data.length;
     }
 
+    // 时间复杂度 O(1)
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("get failed,  index is out of range");
@@ -39,6 +40,7 @@ public class Array<E> {
         data[index] = item;
     }
 
+    // 时间复杂度 O(n)，index在 0-n之间，期望 O(n/2)
     public void insert(int index, E item) {
         if (size == data.length) {
             resize(2 * size);
@@ -53,14 +55,17 @@ public class Array<E> {
         size++;
     }
 
+    // 时间复杂度 O(1)，不执行insert中的 for 循环
     public void addLast(E item) {
         insert(size, item);
     }
 
+    // 时间复杂度 O(n)，在头部添加元素后，整个数组都要移动，for 循环 n 次
     public void addFirst(E item) {
         insert(0, item);
     }
 
+    // 时间复杂度 O(n)
     public int find(E item) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(item)) {
@@ -70,14 +75,16 @@ public class Array<E> {
         return -1;
     }
 
+    // 时间复杂度 O(n)
     public boolean contains(E item) {
         int index = find(item);
         return index > 0;
     }
 
+    // 时间复杂度 O(n) 期望 O(n/2)
     public E remove(int index) {
-        if(size <= data.length/2) {
-            resize(data.length/2);
+        if (size <= data.length / 2) {
+            resize(data.length / 2);
         }
 
         if (index < 0 || index >= size) {
@@ -91,10 +98,12 @@ public class Array<E> {
         return data[index];
     }
 
+    // 时间复杂度 O(n)
     public E removeFirst() {
         return remove(0);
     }
 
+    // 时间复杂度 O(1)
     public E removeLast() {
         return remove(size - 1);
     }
@@ -118,7 +127,7 @@ public class Array<E> {
         return isRemoveAll;
     }
 
-    // 动态扩充数组长度
+    // 动态扩充数组长度 时间复杂度O(n) 时间复杂度只描述增长趋势
     private void resize(int newCapacity) {
         E[] newData = (E[]) new Object[newCapacity];
         for (int i = 0; i < size; i++) {

@@ -25,6 +25,20 @@ public class Array {
         return data.length;
     }
 
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("get failed,  index is out of range");
+        }
+        return data[index];
+    }
+
+    public void set(int index, int item) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("get failed,  index is out of range");
+        }
+        data[index] = item;
+    }
+
     @Override
     public String toString() {
         if (size != 0) {

@@ -83,7 +83,8 @@ public class Array<E> {
 
     // 时间复杂度 O(n) 期望 O(n/2)
     public E remove(int index) {
-        if (size <= data.length / 2) {
+        // 均摊复杂度和防止复杂度的震荡
+        if (size == data.length / 4 ) {
             resize(data.length / 2);
         }
 
@@ -156,7 +157,8 @@ public class Array<E> {
 
             return s;
         } else {
-            return "[]";
+            return "[]"+"\ncapacity: " + data.length +
+                    "    size: " + size;
         }
     }
 }

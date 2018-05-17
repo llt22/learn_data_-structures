@@ -1,11 +1,11 @@
 import java.util.Arrays;
 
-public class Array {
-    private int[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
 
     public Array(int capacity) {
-        this.data = new int[capacity];
+        this.data = (E[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -25,21 +25,21 @@ public class Array {
         return data.length;
     }
 
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("get failed,  index is out of range");
         }
         return data[index];
     }
 
-    public void set(int index, int item) {
+    public void set(int index, E item) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("get failed,  index is out of range");
         }
         data[index] = item;
     }
 
-    public void insert(int index, int item) {
+    public void insert(int index, E item) {
         if (size == data.length) {
             throw new IllegalArgumentException("addLast failed, array is full");
         }
@@ -53,29 +53,29 @@ public class Array {
         size++;
     }
 
-    public void addLast(int item) {
+    public void addLast(E item) {
         insert(size, item);
     }
 
-    public void addFirst(int item) {
+    public void addFirst(E item) {
         insert(0, item);
     }
 
-    public int find(int item) {
+    public int find(E item) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == item) {
+            if (data[i].equals(item)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean contains(int item) {
+    public boolean contains(E item) {
         int index = find(item);
         return index > 0;
     }
 
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("remove failed,  index is out of range");
         }
@@ -86,15 +86,15 @@ public class Array {
         return data[index];
     }
 
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
-    public boolean removeElement(int item) {
+    public boolean removeElement(E item) {
         int index = find(item);
         if (index != -1) {
             remove(index);
@@ -103,7 +103,7 @@ public class Array {
         return false;
     }
 
-    public boolean removeAllElements(int item) {
+    public boolean removeAllElements(E item) {
         boolean isRemoved = removeElement(item);
         boolean isRemoveAll = false;
         while (isRemoved) {
@@ -116,9 +116,11 @@ public class Array {
     @Override
     public String toString() {
         if (size != 0) {
-            String arr = Arrays.toString(this.data);
-            String subArr = arr.substring(0, 3 * size - 1) + "]";
-            String s = subArr +
+            String arr = "";
+            for (int i = 0; i < size; i++) {
+                arr += data[i];
+            }
+            String s = arr +
                     "\ncapacity: " + data.length +
                     "    size: " + size;
 

@@ -116,9 +116,16 @@ public class Array<E> {
     @Override
     public String toString() {
         if (size != 0) {
-            String arr = "";
+            String arr = "[";
             for (int i = 0; i < size; i++) {
-                arr += data[i];
+                String a = "";
+                if (i == size - 1) {
+                    a = data[i] + "]";
+                } else {
+                    a = data[i] + ",";
+                }
+
+                arr += a;
             }
             String s = arr +
                     "\ncapacity: " + data.length +
@@ -126,7 +133,7 @@ public class Array<E> {
 
             return s;
         } else {
-            return "[ ]";
+            return "[]";
         }
     }
 }

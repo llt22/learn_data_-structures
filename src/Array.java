@@ -13,6 +13,18 @@ public class Array {
         this(10);
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getCapacity() {
+        return data.length;
+    }
+
     @Override
     public String toString() {
         if (size != 0) {

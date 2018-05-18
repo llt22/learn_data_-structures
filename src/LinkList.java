@@ -47,6 +47,8 @@ public class LinkList<T> {
      * 【dummyHead: null】-> 【head】-> 【33】-> 【54】-> 【45】-> 【44】
      * 因为我们找的是插入位置左边的节点，如果没有dummyHead, 当index=0, 也就是插入头Node就会出错
      * */
+
+    // 时间复杂度 O(n)  期望复杂度 O(n/2)
     public void insert(int index, T e) {
 
         if (index > size || index < 0) {
@@ -65,10 +67,12 @@ public class LinkList<T> {
         size++;
     }
 
+    // 时间复杂度 O(1)
     public void addFirst(T e) {
         insert(0, e);
     }
 
+    // 时间复杂度 O(n)
     public void addLast(T e) {
         insert(size, e);
     }
@@ -85,6 +89,7 @@ public class LinkList<T> {
     }
 
     // 注意获取的是指定节点里存储的数据
+    // 时间复杂度 O(n)  期望复杂度 O(n/2)
     public T get(int index) {
         return getNode(index).e;
 
@@ -98,10 +103,12 @@ public class LinkList<T> {
         return get(size - 1);
     }
 
+    //    时间复杂度 O(n)  期望复杂度 O(n/2)
     public void set(int index, T e) {
         getNode(index).e = e;
     }
 
+    //    时间复杂度 O(n)  期望复杂度 O(n/2)
     public boolean contains(T e) {
         for (int i = 0; i < size; i++) {
             if (e == getNode(i).e) {
@@ -110,6 +117,32 @@ public class LinkList<T> {
         }
         return false;
     }
+
+    // 时间复杂度 O(n)  期望复杂度 O(n/2)
+    public T removeNode(int index) {
+        Node pre = null;
+        if (index == 0) {
+            pre = dummyHead;
+        } else {
+            pre = getNode(index - 1);
+        }
+        T e = pre.next.e;
+        pre.next = pre.next.next;
+        size--;
+        return e;
+
+    }
+
+    //    时间复杂度 O(1)
+    public T removeFirst() {
+        return removeNode(0);
+    }
+
+    //    时间复杂度 O(n)
+    public T removeLast() {
+        return removeNode(size - 1);
+    }
+
 
     @Override
     public String toString() {

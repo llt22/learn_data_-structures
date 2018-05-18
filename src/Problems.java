@@ -1,7 +1,7 @@
 public class Problems {
     public static void main(String[] args) {
         Problems p1 = new Problems();
-        
+
         String [] tests = new String[]{"()","()[]{}"};
         for (int i = 0; i < tests.length; i++) {
             System.out.println(p1.isParenthesesVaild(tests[i]));

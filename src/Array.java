@@ -36,6 +36,10 @@ public class Array<E> {
         return get(size-1);
     }
 
+    public E getFirst(){
+        return get(0);
+    }
+
     public void set(int index, E item) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("get failed,  index is out of range");

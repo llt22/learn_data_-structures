@@ -1,13 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        LoopQueue<Integer> queue = new LoopQueue<>();
-        for (int i = 0; i <5 ; i++) {
-            queue.enqueue(i);
-        }
-        queue.dequeue();
-        queue.dequeue();
-        queue.dequeue();
-        System.out.println(queue);
+        LinkList<Integer> list = new LinkList<>();
+        list.addFirst(66);
+        list.addFirst(100);
+        list.addLast(29);
+        list.insert(2,444444444);
+        list.showList();
     }
 }
 

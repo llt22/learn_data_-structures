@@ -5,6 +5,9 @@ public class Main {
         list.addFirst(100);
         list.addLast(29);
         list.insert(2,444444444);
+        list.set(2,44);
+        System.out.println(list.contains(10));
+        System.out.println(list);
         list.showList();
     }
 }

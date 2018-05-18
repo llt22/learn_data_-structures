@@ -22,7 +22,7 @@ public class LinkList<T> {
             if (next == null) {
                 s = "null";
             }
-            return "Node(data: " + e.toString() + ", next:" + s + ")";
+            return e.toString();
         }
     }
 
@@ -71,18 +71,62 @@ public class LinkList<T> {
 
     public void addLast(T e) {
         insert(size, e);
-        size++;
     }
 
+    private Node getNode(int index) {
+        if (index >= size || index < 0) {
+            throw new IllegalArgumentException("get failed,  index is out of range");
+        }
+        Node current = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current;
+    }
+
+    // 注意获取的是指定节点里存储的数据
+    public T get(int index) {
+        return getNode(index).e;
+
+    }
+
+    public T getFirst() {
+        return get(0);
+    }
+
+    public T getLast() {
+        return get(size - 1);
+    }
+
+    public void set(int index, T e) {
+        getNode(index).e = e;
+    }
+
+    public boolean contains(T e) {
+        for (int i = 0; i < size; i++) {
+            if (e == getNode(i).e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            Node n = getNode(i);
+            s.append(n.toString() + " -> ");
+        }
+        s.append("null");
+        return s.toString();
+    }
 
     public void showList() {
-        Node nextNode = dummyHead.next;
-        System.out.println(nextNode);
-
-        while (nextNode.next != null) {
-            nextNode = nextNode.next;
-            System.out.println(nextNode);
+        for (int i = 0; i < size; i++) {
+            Node n = getNode(i);
+            System.out.print("(" + n.e.toString() + ", " + "next: yes)" + " -> ");
         }
+        System.out.print("null");
     }
-
 }

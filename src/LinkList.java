@@ -26,11 +26,11 @@ public class LinkList<T> {
         }
     }
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkList() {
-        head = null;
+        dummyHead = new Node(null, null);
         size = 0;
     }
 
@@ -42,59 +42,46 @@ public class LinkList<T> {
         return size == 0;
     }
 
-    public void addFirst(T nodeData) {
-        Node node = new Node(nodeData);
-        node.next = head;
-        head = node;
-//        head = new Node(nodeData, head);
-        size++;
-    }
-
-    public void addLast(T e) {
-        Node newNode = new Node(e);
-        Node lastNode = head;
-        while (lastNode.next != null) {
-            lastNode = lastNode.next;
-        }
-        lastNode.next = newNode;
-        size++;
-    }
-
+    /*
+     * 假的节点保证插入逻辑的统一性
+     * 【dummyHead: null】-> 【head】-> 【33】-> 【54】-> 【45】-> 【44】
+     * 因为我们找的是插入位置左边的节点，如果没有dummyHead, 当index=0, 也就是插入头Node就会出错
+     * */
     public void insert(int index, T e) {
-        if (index == 0) {
-            addFirst(e);
-            return;
-        }
+
         if (index > size || index < 0) {
             throw new IllegalArgumentException("get failed,  index is out of range");
         }
 
         Node newNode = new Node(e);
-        int count = 1;
-        Node left = head;
-        Node right = null;
-
-        while (left.next != null && count < index) {
+        Node left = dummyHead;
+        for (int i = 0; i < index; i++) {
             left = left.next;
-            count++;
         }
-        right = left.next;
+
+        Node right = left.next;
         left.next = newNode;
         newNode.next = right;
         size++;
     }
 
-    public Node getHead() {
-        return head;
+    public void addFirst(T e) {
+        insert(0, e);
     }
 
-    public void showList() {
-        Node lastNode = head;
-        System.out.println(lastNode);
-        while (lastNode.next != null) {
+    public void addLast(T e) {
+        insert(size, e);
+        size++;
+    }
 
-            lastNode = lastNode.next;
-            System.out.println(lastNode);
+
+    public void showList() {
+        Node nextNode = dummyHead.next;
+        System.out.println(nextNode);
+
+        while (nextNode.next != null) {
+            nextNode = nextNode.next;
+            System.out.println(nextNode);
         }
     }
 

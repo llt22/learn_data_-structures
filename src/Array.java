@@ -32,6 +32,9 @@ public class Array<E> {
         }
         return data[index];
     }
+    public E getLast(){
+        return get(size-1);
+    }
 
     public void set(int index, E item) {
         if (index < 0 || index >= size) {

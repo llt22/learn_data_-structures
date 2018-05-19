@@ -1,12 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        LinkList<Integer> list = new LinkList<>();
-        list.addFirst(66);
-        list.addFirst(100);
-        list.addLast(29);
-        list.insert(2,444444444);
-        System.out.println(list.removeFirst());
-        System.out.println(list);
+        LinkListStack<Integer> stack = new LinkListStack<>();
+        for (int i = 0; i < 4; i++) {
+            stack.push(i);
+        }
+        stack.pop();
+        stack.peak();
+        System.out.println(stack);
+
     }
 }
 

@@ -1,12 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        LinkListStack<Integer> stack = new LinkListStack<>();
+        LinkListQueue<Integer> queue = new LinkListQueue<>();
         for (int i = 0; i < 4; i++) {
-            stack.push(i);
+            queue.enqueue(i);
         }
-        stack.pop();
-        stack.peak();
-        System.out.println(stack);
+        queue.dequeue();
+        queue.dequeue();
+        System.out.println(queue);
 
     }
 }

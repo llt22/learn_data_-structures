@@ -1,13 +1,14 @@
 public class Main {
     public static void main(String[] args) {
-        LinkListQueue<Integer> queue = new LinkListQueue<>();
-        for (int i = 0; i < 4; i++) {
-            queue.enqueue(i);
+        LinkList<String> list = new LinkList<>();
+        for (int i = 0; i < 3; i++) {
+            list.addFirst("hello");
         }
-        queue.dequeue();
-        queue.dequeue();
-        System.out.println(queue);
-
+        list.addFirst("world");
+        System.out.println(list);
+        System.out.println(list.getFirst());
+        list.removeElements("hello");
+        System.out.println(list);
     }
 }
 

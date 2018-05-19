@@ -111,7 +111,7 @@ public class LinkList<T> {
     //    时间复杂度 O(n)  期望复杂度 O(n/2)
     public boolean contains(T e) {
         for (int i = 0; i < size; i++) {
-            if (e == getNode(i).e) {
+            if (e.equals(getNode(i).e)) {
                 return true;
             }
         }
@@ -141,6 +141,19 @@ public class LinkList<T> {
     //    时间复杂度 O(n)
     public T removeLast() {
         return removeNode(size - 1);
+    }
+
+    public boolean removeElements(T e) {
+        Node pre = dummyHead;
+        while (pre.next != null) {
+            if (pre.next.e == e) {
+                pre.next = pre.next.next;
+                size--;
+            } else {
+                pre = pre.next;
+            }
+        }
+        return true;
     }
 
 

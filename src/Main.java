@@ -7,7 +7,6 @@ public class Main {
         list.addFirst("world");
         System.out.println(list);
         System.out.println(list.getFirst());
-        list.removeElements("hello");
         System.out.println(list);
     }
 }
